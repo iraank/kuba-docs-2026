@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>План продажу · вул. Кубанської України, 21 · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B0F1A; --card: #111827; --card2: #1A2336; --border: #222D44;
+  --text: #DDE3F0; --muted: #6B7A99; --accent: #C8A96E;
+  --red: #E06060; --amber: #E0A840; --green: #48C78E; --blue: #5B9CF6; --purple: #A78BFA;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Sora',sans-serif; font-weight:300; line-height:1.65; }
+.hero { padding:64px 48px 56px; max-width:1080px; margin:0 auto; border-bottom:1px solid var(--border); }
+.hero-label { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:500; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:46px; font-weight:700; line-height:1.1; margin-bottom:10px; }
+.hero h1 em { font-style:italic; color:var(--accent); }
+.hero-desc { font-size:14px; color:var(--muted); margin-top:10px; }
+.hero-pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.hero-pill { background:var(--card2); border:1px solid var(--border); border-radius:20px; padding:5px 14px; font-size:12px; color:var(--muted); }
+.wrap { max-width:1080px; margin:0 auto; padding:0 48px 80px; }
+h2.section-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; margin-bottom:24px; margin-top:52px; }
+h2.section-title em { font-style:italic; color:var(--accent); }
+
+/* TIMELINE */
+.timeline { position:relative; padding-left:0; }
+.timeline::before { display:none; }
+.phase { display:grid; grid-template-columns:160px 1fr; gap:32px; margin-bottom:0; }
+.phase-connector { display:flex; flex-direction:column; align-items:center; padding-top:8px; }
+.phase-dot { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; border:2px solid; }
+.phase-dot.prep   { background:rgba(167,139,250,0.15); border-color:var(--purple); }
+.phase-dot.launch { background:rgba(91,156,246,0.15); border-color:var(--blue); }
+.phase-dot.drop1  { background:rgba(224,168,64,0.15); border-color:var(--amber); }
+.phase-dot.drop2  { background:rgba(224,96,96,0.15); border-color:var(--red); }
+.phase-dot.zadatok{ background:rgba(72,199,142,0.15); border-color:var(--green); }
+.phase-dot.closing{ background:rgba(200,169,110,0.2); border-color:var(--accent); }
+.phase-line { width:2px; flex:1; min-height:30px; background:var(--border); margin:6px 0; }
+.phase-date { text-align:right; padding-top:8px; }
+.phase-date-main { font-size:18px; font-weight:600; color:var(--text); }
+.phase-date-sub { font-size:11px; color:var(--muted); margin-top:2px; }
+.phase-content { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px 26px; margin-bottom:20px; }
+.phase-content.prep   { border-left:3px solid var(--purple); }
+.phase-content.launch { border-left:3px solid var(--blue); }
+.phase-content.drop1  { border-left:3px solid var(--amber); }
+.phase-content.drop2  { border-left:3px solid var(--red); }
+.phase-content.zadatok{ border-left:3px solid var(--green); }
+.phase-content.closing{ border-left:3px solid var(--accent); }
+.phase-tag { display:inline-block; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:10px; font-weight:500; }
+.phase-tag.prep   { background:rgba(167,139,250,0.15); color:var(--purple); }
+.phase-tag.launch { background:rgba(91,156,246,0.15); color:var(--blue); }
+.phase-tag.drop1  { background:rgba(224,168,64,0.15); color:var(--amber); }
+.phase-tag.drop2  { background:rgba(224,96,96,0.15); color:var(--red); }
+.phase-tag.zadatok{ background:rgba(72,199,142,0.15); color:var(--green); }
+.phase-tag.closing{ background:rgba(200,169,110,0.15); color:var(--accent); }
+.phase-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; margin-bottom:8px; }
+.phase-price { font-size:28px; font-weight:600; margin-bottom:12px; }
+.phase-price.blue  { color:var(--blue); }
+.phase-price.amber { color:var(--amber); }
+.phase-price.red   { color:var(--red); }
+.phase-price.green { color:var(--green); }
+.phase-price.gold  { color:var(--accent); }
+.phase-body { font-size:13px; color:var(--muted); line-height:1.65; }
+.checklist { margin-top:14px; display:flex; flex-direction:column; gap:8px; }
+.check-item { display:flex; gap:10px; align-items:flex-start; font-size:13px; }
+.check-icon { font-size:14px; flex-shrink:0; margin-top:1px; }
+.check-text { color:var(--muted); }
+.check-text strong { color:var(--text); font-weight:500; }
+.prob-bar { margin-top:16px; }
+.prob-label { display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-bottom:6px; }
+.prob-track { background:var(--border); border-radius:4px; height:8px; overflow:hidden; }
+.prob-fill { height:100%; border-radius:4px; transition:width 0.3s; }
+.prob-fill.blue  { background:var(--blue); }
+.prob-fill.amber { background:var(--amber); }
+.prob-fill.red   { background:var(--red); }
+.prob-fill.green { background:var(--green); }
+.prob-val { font-size:20px; font-weight:600; margin-top:8px; }
+.prob-val.blue  { color:var(--blue); }
+.prob-val.amber { color:var(--amber); }
+.prob-val.red   { color:var(--red); }
+.prob-val.green { color:var(--green); }
+
+/* PRICE MATRIX */
+.matrix { border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-top:24px; }
+.matrix-header { background:var(--card2); padding:20px 28px; border-bottom:1px solid var(--border); }
+.matrix-header h3 { font-family:'Playfair Display',serif; font-size:20px; }
+.matrix-header p { font-size:13px; color:var(--muted); margin-top:4px; }
+table { width:100%; border-collapse:collapse; }
+thead tr { background:var(--card2); }
+thead th { padding:12px 20px; text-align:left; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; white-space:nowrap; }
+tbody tr { border-top:1px solid var(--border); }
+tbody tr:hover { background:rgba(255,255,255,0.02); }
+tbody td { padding:13px 20px; font-size:13px; }
+.badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500; }
+.badge.green  { background:rgba(72,199,142,0.15); color:var(--green); }
+.badge.amber  { background:rgba(224,168,64,0.15); color:var(--amber); }
+.badge.red    { background:rgba(224,96,96,0.15); color:var(--red); }
+.badge.blue   { background:rgba(91,156,246,0.15); color:var(--blue); }
+.badge.gold   { background:rgba(200,169,110,0.15); color:var(--accent); }
+
+/* DOCS CHECKLIST */
+.docs-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px; }
+.doc-block { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+.doc-block-title { font-size:13px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.doc-item { display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-top:1px solid var(--border); }
+.doc-status { width:20px; height:20px; border-radius:50%; border:2px solid; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:11px; margin-top:1px; }
+.doc-status.done   { border-color:var(--green); color:var(--green); background:rgba(72,199,142,0.1); }
+.doc-status.warn   { border-color:var(--amber); color:var(--amber); background:rgba(224,168,64,0.1); }
+.doc-status.missing{ border-color:var(--red); color:var(--red); background:rgba(224,96,96,0.1); }
+.doc-text-main { font-size:13px; font-weight:500; }
+.doc-text-sub  { font-size:11px; color:var(--muted); }
+
+/* LVIV BLOCK */
+.lviv-block { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px 28px; margin-top:24px; }
+.lviv-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:16px; }
+.lviv-step { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; text-align:center; }
+.lviv-step-num { font-size:28px; font-weight:700; color:var(--accent); margin-bottom:6px; }
+.lviv-step-text { font-size:12px; color:var(--muted); line-height:1.5; }
+.lviv-step-sub { font-size:11px; color:var(--muted); margin-top:4px; }
+
+/* ALERTS */
+.alert { border-radius:10px; padding:14px 18px; margin-top:16px; display:flex; gap:12px; align-items:flex-start; }
+.alert.warn { background:rgba(224,168,64,0.08); border:1px solid rgba(224,168,64,0.3); }
+.alert.info { background:rgba(91,156,246,0.08); border:1px solid rgba(91,156,246,0.3); }
+.alert.success { background:rgba(72,199,142,0.08); border:1px solid rgba(72,199,142,0.3); }
+.alert-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+.alert-text { font-size:13px; color:var(--muted); line-height:1.5; }
+.alert-text strong { color:var(--text); font-weight:500; }
+
+.foot { border-top:1px solid var(--border); padding:28px 48px; max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:11px; color:var(--muted); }
+@media(max-width:700px){
+  .hero,.wrap { padding-left:20px; padding-right:20px; }
+  .hero h1 { font-size:30px; }
+  .phase { grid-template-columns:120px 1fr; gap:16px; }
+  .docs-grid { grid-template-columns:1fr; }
+  .lviv-steps { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:#0B0F1A;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-family:sans-serif;">
+  <div style="font-family:serif;font-size:28px;font-weight:700;color:#C8A96E;">🔒 Приватний документ</div>
+  <input id="pw-input" type="password" placeholder="Введіть пароль" style="background:#111827;border:1px solid #C8A96E;border-radius:8px;padding:12px 20px;color:#DDE3F0;font-size:16px;outline:none;width:280px;text-align:center;" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()" style="background:#C8A96E;color:#0B0F1A;border:none;border-radius:8px;padding:10px 28px;font-size:15px;font-weight:600;cursor:pointer;">Відкрити</button>
+  <div id="pw-err" style="color:#E06060;font-size:13px;display:none;">Невірний пароль</div>
+</div>
+<script>
+(function(){
+  if(sessionStorage.getItem('auth')==='ok'){document.getElementById('pw-gate').style.display='none';}
+  window.checkPw=function(){
+    if(document.getElementById('pw-input').value==='Kuba2026'){
+      sessionStorage.setItem('auth','ok');
+      document.getElementById('pw-gate').style.display='none';
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  }
+})();
+</script>
+
+
+<div class="hero">
+  <div class="hero-label">Стратегія продажу нерухомості · Київ → Львів</div>
+  <h1>План продажу<br><em>Кубанської України, 21</em></h1>
+  <p class="hero-desc">Цільова дата закриття: 26–30 жовтня 2026 · Старт: 1 липня 2026</p>
+  <div class="hero-pills">
+    <span class="hero-pill">📍 вул. Кубанської України, 21 · 4/5 · 47 м²</span>
+    <span class="hero-pill">🎯 Стартова ціна $65 000</span>
+    <span class="hero-pill">📅 Закриття 26–30 жовтня 2026</span>
+    <span class="hero-pill">🏡 Мета: купівля у Львові до грудня 2026</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<h2 class="section-title">Часова <em>шкала</em></h2>
+
+<div class="timeline">
+
+  <!-- ФАЗА 0 — ПІДГОТОВКА -->
+  <div class="phase">
+    <div>
+      <div class="phase-connector">
+        <div class="phase-dot prep">⚙️</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-date">
+        <div class="phase-date-main">Червень</div>
+        <div class="phase-date-sub">до 30 червня</div>
+      </div>
+    </div>
+    <div class="phase-content prep">
+      <span class="phase-tag prep">Фаза 0 · Підготовка</span>
+      <div class="phase-title">Документи та підготовка квартири</div>
+      <div class="phase-body">Зібрати повний пакет документів. Без готового пакету нотаріус не оформить угоду — затримка документів = втрачений покупець.</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">✅</span><div class="check-text"><strong>Договір дарування</strong> — є на руках</div></div>
+        <div class="check-item"><span class="check-icon">✅</span><div class="check-text"><strong>Витяг з реєстру прав</strong> — замовити онлайн на Дія або Prozorro через нотаріуса (~1–3 дні)</div></div>
+        <div class="check-item"><span class="check-icon">⚠️</span><div class="check-text"><strong>Технічний паспорт</strong> — старший за 5 років, потрібен новий. Замовити в БТІ або ПП-ліцензіата (~5–7 днів, 1 500–3 000 грн)</div></div>
+        <div class="check-item"><span class="check-icon">⚠️</span><div class="check-text"><strong>Борг 20 000 грн</strong> — укласти договір реструктуризації або погасити з задатку</div></div>
+        <div class="check-item"><span class="check-icon">⚠️</span><div class="check-text"><strong>Виписка</strong> — підготувати місце для виписки (Львів — нова адреса) або виписатись "у нікуди" тимчасово на 3 міс.</div></div>
+        <div class="check-item"><span class="check-icon">📸</span><div class="check-text"><strong>Фотосесія квартири</strong> — якісні фото при денному світлі (10–15 фото)</div></div>
+        <div class="check-item"><span class="check-icon">🧹</span><div class="check-text"><strong>Мінімальна передпродажна підготовка</strong> — прибирання, усунення дрібних дефектів</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ФАЗА 1 — СТАРТ -->
+  <div class="phase">
+    <div>
+      <div class="phase-connector">
+        <div class="phase-dot launch">🚀</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-date">
+        <div class="phase-date-main">1 липня</div>
+        <div class="phase-date-sub">2026</div>
+      </div>
+    </div>
+    <div class="phase-content launch">
+      <span class="phase-tag launch">Фаза 1 · Старт продажу</span>
+      <div class="phase-title">Вихід на ринок</div>
+      <div class="phase-price blue">$65 000</div>
+      <div class="phase-body">Старт за ціною K3 верхньої межі. Ваучерники можуть купити з доплатою $17–20K — це реально для тих хто має заощадження. Аудиторія: сім'ї з ВПО + ті хто шукає "заїжджай і живи".</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">📱</span><div class="check-text"><strong>Розмістити оголошення</strong> на LUN.UA, OLX, DOM.RIA</div></div>
+        <div class="check-item"><span class="check-icon">🤝</span><div class="check-text"><strong>Підписати з рієлтором</strong> в Києві (3% — комісія продавця)</div></div>
+        <div class="check-item"><span class="check-icon">🏷</span><div class="check-text"><strong>Акцент в описі</strong>: 4-й поверх, якісний ремонт, Лісовий масив, метро Чернігівська 10 хв</div></div>
+        <div class="check-item"><span class="check-icon">💬</span><div class="check-text"><strong>VPO-текст</strong>: "Підходить під ваучер ВПО 2 млн грн, доплата від $17 000"</div></div>
+      </div>
+      <div class="prob-bar">
+        <div class="prob-label"><span>Ймовірність задатку до 15 серпня при ціні $65K</span><span>35%</span></div>
+        <div class="prob-track"><div class="prob-fill blue" style="width:35%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ФАЗА 2 — ПЕРШЕ ЗНИЖЕННЯ -->
+  <div class="phase">
+    <div>
+      <div class="phase-connector">
+        <div class="phase-dot drop1">📉</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-date">
+        <div class="phase-date-main">15 серп.</div>
+        <div class="phase-date-sub">якщо немає задатку</div>
+      </div>
+    </div>
+    <div class="phase-content drop1">
+      <span class="phase-tag drop1">Фаза 2 · Перше зниження</span>
+      <div class="phase-title">Тактичне зниження ціни</div>
+      <div class="phase-price amber">$62 000</div>
+      <div class="phase-body">Якщо до 15 серпня немає жодного задатку — знижуємо на $3 000. Це потрапляє в зону "хорошої угоди" для покупців К2–К3. Ваучерна доплата тепер $14–17K — доступніше.</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">🔄</span><div class="check-text"><strong>Оновити всі оголошення</strong> з новою ціною та позначкою "Ціна знижена"</div></div>
+        <div class="check-item"><span class="check-icon">📞</span><div class="check-text"><strong>Рієлтор дзвонить усім</strong> хто переглядав квартиру до цього</div></div>
+      </div>
+      <div class="prob-bar">
+        <div class="prob-label"><span>Ймовірність задатку до 1 вересня при $62K</span><span>55%</span></div>
+        <div class="prob-track"><div class="prob-fill amber" style="width:55%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ФАЗА 3 — ДРУГЕ ЗНИЖЕННЯ -->
+  <div class="phase">
+    <div>
+      <div class="phase-connector">
+        <div class="phase-dot drop2">🎯</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-date">
+        <div class="phase-date-main">1 вересня</div>
+        <div class="phase-date-sub">якщо немає задатку</div>
+      </div>
+    </div>
+    <div class="phase-content drop2">
+      <span class="phase-tag drop2">Фаза 3 · Остаточна ціна</span>
+      <div class="phase-title">Агресивне зниження для закриття</div>
+      <div class="phase-price red">$59 000</div>
+      <div class="phase-body">Вхід у зону К2 верхня / К3 нижня. Значно ширша аудиторія: ваучер покриває $45–48K, доплата лише $11–14K. Це ціна яка продається швидко в умовах осіннього ринку.</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">⚡</span><div class="check-text"><strong>Термінове розміщення</strong>: "Терміновий продаж — ціна фінальна"</div></div>
+        <div class="check-item"><span class="check-icon">📣</span><div class="check-text"><strong>Розширити канали</strong>: Facebook-групи Деснянського р-ну, ВПО-чати</div></div>
+      </div>
+      <div class="prob-bar">
+        <div class="prob-label"><span>Ймовірність задатку до 1 жовтня при $59K</span><span>80%</span></div>
+        <div class="prob-track"><div class="prob-fill red" style="width:80%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ФАЗА 4 — ЗАДАТОК -->
+  <div class="phase">
+    <div>
+      <div class="phase-connector">
+        <div class="phase-dot zadatok">🤝</div>
+        <div class="phase-line"></div>
+      </div>
+      <div class="phase-date">
+        <div class="phase-date-main">до 5 жовт.</div>
+        <div class="phase-date-sub">цільовий дедлайн</div>
+      </div>
+    </div>
+    <div class="phase-content zadatok">
+      <span class="phase-tag zadatok">Фаза 4 · Задаток</span>
+      <div class="phase-title">Підписання попереднього договору</div>
+      <div class="phase-price green">Задаток 5–10%</div>
+      <div class="phase-body">Попередній договір + задаток 5–10% від суми угоди = юридичне закріплення угоди. Покупець більше не може відступити без втрати задатку. Від задатку до закриття — 3–4 тижні.</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">📑</span><div class="check-text"><strong>Попередній договір у нотаріуса</strong> — вказати дату закриття 26–30 жовтня</div></div>
+        <div class="check-item"><span class="check-icon">💵</span><div class="check-text"><strong>Задаток покриває борг</strong> 20 000 грн — погасити одразу</div></div>
+        <div class="check-item"><span class="check-icon">🔑</span><div class="check-text"><strong>Уточнити дату виписки</strong> — ви і syn на момент угоди мають бути виписані</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ФАЗА 5 — ЗАКРИТТЯ -->
+  <div class="phase">
+    <div>
+      <div class="phase-connector">
+        <div class="phase-dot closing">🏆</div>
+      </div>
+      <div class="phase-date">
+        <div class="phase-date-main">26–30 жовт.</div>
+        <div class="phase-date-sub">2026</div>
+      </div>
+    </div>
+    <div class="phase-content closing">
+      <span class="phase-tag closing">Фаза 5 · Закриття угоди</span>
+      <div class="phase-title">Підписання основного договору купівлі-продажу</div>
+      <div class="phase-price gold">Гроші на рахунку</div>
+      <div class="phase-body">Основний договір у нотаріуса. Реєстрація переходу права власності. Отримання коштів. Відразу планувати вихід на ринок Львова.</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">📝</span><div class="check-text"><strong>Основний договір</strong> у нотаріуса + реєстрація переходу права</div></div>
+        <div class="check-item"><span class="check-icon">💰</span><div class="check-text"><strong>Сплата податків</strong>: ПДФО 0% (якщо від дарування 3+ роки) або 5% + 1,5% ВЗ</div></div>
+        <div class="check-item"><span class="check-icon">🏦</span><div class="check-text"><strong>Переведення коштів</strong> на ваш рахунок у банку</div></div>
+        <div class="check-item"><span class="check-icon">🏡</span><div class="check-text"><strong>Активний пошук у Львові</strong> починається</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- МАТРИЦЯ ЦІН -->
+<div class="matrix">
+  <div class="matrix-header">
+    <h3>Матриця ціна → час → ймовірність продажу</h3>
+    <p>Прогноз на основі ринкових даних Лісового масиву червень 2026 + ваучерний попит ВПО</p>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Ціна старту</th>
+        <th>Продаж до 1 серп.</th>
+        <th>Продаж до 1 верес.</th>
+        <th>Продаж до 1 жовт.</th>
+        <th>Чистими (0% ПДФО)</th>
+        <th>Ваучерна доплата</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>$65 000</strong></td>
+        <td><span class="badge amber">35%</span></td>
+        <td><span class="badge amber">45%</span></td>
+        <td><span class="badge green">60%</span></td>
+        <td style="color:var(--green)"><strong>~$61 050</strong></td>
+        <td>$17–20K</td>
+      </tr>
+      <tr style="background:rgba(200,169,110,0.04)">
+        <td><strong>$62 000 ★</strong></td>
+        <td><span class="badge amber">40%</span></td>
+        <td><span class="badge green">55%</span></td>
+        <td><span class="badge green">72%</span></td>
+        <td style="color:var(--green)"><strong>~$58 140</strong></td>
+        <td>$14–17K</td>
+      </tr>
+      <tr>
+        <td><strong>$59 000</strong></td>
+        <td><span class="badge red">25%</span></td>
+        <td><span class="badge amber">57%</span></td>
+        <td><span class="badge green">80%</span></td>
+        <td style="color:var(--green)"><strong>~$55 330</strong></td>
+        <td>$11–14K</td>
+      </tr>
+      <tr>
+        <td><strong>$57 000</strong></td>
+        <td><span class="badge red">20%</span></td>
+        <td><span class="badge amber">50%</span></td>
+        <td><span class="badge green">85%</span></td>
+        <td style="color:var(--amber)"><strong>~$53 440</strong></td>
+        <td>$9–12K</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="alert warn">
+  <span class="alert-icon">⚠️</span>
+  <div class="alert-text">★ <strong>Рекомендований сценарій</strong>: старт $65K → зниження до $62K 15 серпня. Максимізує виручку при збереженні цільового дедлайну закриття 26–30 жовтня.</div>
+</div>
+
+<!-- ДОКУМЕНТИ -->
+<h2 class="section-title">Пакет <em>документів</em></h2>
+
+<div class="docs-grid">
+  <div class="doc-block">
+    <div class="doc-block-title">📁 Документи власника</div>
+    <div class="doc-item">
+      <div class="doc-status done">✓</div>
+      <div><div class="doc-text-main">Паспорт + ІПН</div><div class="doc-text-sub">Є на руках</div></div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-status done">✓</div>
+      <div><div class="doc-text-main">Договір дарування</div><div class="doc-text-sub">Є на руках — основний правовстановлюючий документ</div></div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-status warn">!</div>
+      <div><div class="doc-text-main">Технічний паспорт</div><div class="doc-text-sub">Старший 5 років — замовити в БТІ або ПП (5–7 днів, 1 500–3 000 грн)</div></div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-status warn">!</div>
+      <div><div class="doc-text-main">Витяг з реєстру прав</div><div class="doc-text-sub">Замовити онлайн через Дію / нотаріуса (1–3 дні, 160–300 грн)</div></div>
+    </div>
+  </div>
+  <div class="doc-block">
+    <div class="doc-block-title">📋 Додаткові документи</div>
+    <div class="doc-item">
+      <div class="doc-status warn">!</div>
+      <div><div class="doc-text-main">Довідка про відсутність боргів по ЖКГ</div><div class="doc-text-sub">ОСББ або ЖЕК — оплатити борг 20K грн + взяти довідку</div></div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-status warn">!</div>
+      <div><div class="doc-text-main">Довідка про реєстрацію (форма 3)</div><div class="doc-text-sub">Хто прописаний на момент угоди — мають бути виписані</div></div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-status missing">✗</div>
+      <div><div class="doc-text-main">Виписка (ви + syn)</div><div class="doc-text-sub">Виписатися до підписання основного договору. Можна "у нікуди" тимчасово або на адресу Львова</div></div>
+    </div>
+    <div class="doc-item">
+      <div class="doc-status missing">✗</div>
+      <div><div class="doc-text-main">Згода органів опіки (якщо syn неповнолітній)</div><div class="doc-text-sub">Якщо syn зареєстрований і неповнолітній — потрібен дозвіл опіки</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="alert info">
+  <span class="alert-icon">ℹ️</span>
+  <div class="alert-text"><strong>Ключове питання:</strong> дата договору дарування від чоловіка. Якщо від дарування пройшло 3+ роки І це перший продаж протягом року — ПДФО 0%, тільки пенсійний 1% (платить покупець). Якщо менше 3 років — ПДФО 5% + ВЗ 1,5% = 6,5% від суми. Уточніть у нотаріуса.</div>
+</div>
+
+<!-- ПІСЛЯ ПРОДАЖУ → ЛЬВІВ -->
+<h2 class="section-title">Після продажу: <em>план Львів</em></h2>
+
+<div class="lviv-block">
+  <p style="font-size:14px;color:var(--muted);margin-bottom:0">Від отримання коштів за київську квартиру до заселення у львівську</p>
+  <div class="lviv-steps">
+    <div class="lviv-step">
+      <div class="lviv-step-num">1</div>
+      <div class="lviv-step-text"><strong>Листопад 2026</strong><br>Активний пошук у Львові. Бюджет: $55–63K залежно від сценарію продажу. Райони: Сихів, Рясне, Личаків.</div>
+    </div>
+    <div class="lviv-step">
+      <div class="lviv-step-num">2</div>
+      <div class="lviv-step-text"><strong>Перегляди</strong><br>Мінімум 5–8 переглядів. Перевірити: юридичну чистоту, стан комунікацій, сусідів, транспорт до школи.</div>
+    </div>
+    <div class="lviv-step">
+      <div class="lviv-step-num">3</div>
+      <div class="lviv-step-text"><strong>Задаток Львів</strong><br>Зафіксувати обрану квартиру задатком 5–10%. Рієлтор Львів: 3% (платить покупець = ви).</div>
+    </div>
+    <div class="lviv-step">
+      <div class="lviv-step-num">4</div>
+      <div class="lviv-step-text"><strong>Грудень 2026</strong><br>Закриття угоди. Реєстрація. Переїзд. Заощаджена оренда $450/міс з грудня 2026.</div>
+    </div>
+  </div>
+</div>
+
+<div class="alert success">
+  <span class="alert-icon">✅</span>
+  <div class="alert-text"><strong>Ключова перевага:</strong> квартира в Київі — у вашій одноосібній власності по договору дарування. Згода колишнього чоловіка <strong>не потрібна</strong>. Угода проходить без ускладнень з боку спільного майна.</div>
+</div>
+
+</div>
+
+<div class="foot">
+  <span>📍 вул. Кубанської України, 21 · Лісовий масив, Деснянський р-н, Київ</span>
+  <span>Складено: 23 червня 2026 · Курс $1 = ≈41,5 грн</span>
+</div>
+
+</body>
+</html>

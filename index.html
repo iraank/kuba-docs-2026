@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Документи · Кубанська України 21</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sora:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#0B0F1A; --card:#111827; --border:#222D44; --text:#DDE3F0; --muted:#6B7A99; --accent:#C8A96E; --green:#48C78E; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Sora',sans-serif; font-weight:300; min-height:100vh; display:flex; align-items:center; justify-content:center; }
+.wrap { max-width:520px; width:100%; padding:40px 24px; }
+.label { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:500; }
+h1 { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; line-height:1.2; margin-bottom:8px; }
+h1 em { font-style:italic; color:var(--accent); }
+.sub { font-size:13px; color:var(--muted); margin-bottom:36px; }
+.doc-link { display:flex; align-items:center; gap:16px; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 24px; text-decoration:none; color:var(--text); margin-bottom:14px; transition:border-color 0.2s; }
+.doc-link:hover { border-color:rgba(200,169,110,0.5); }
+.doc-icon { font-size:28px; flex-shrink:0; }
+.doc-info .doc-title { font-size:15px; font-weight:500; margin-bottom:4px; }
+.doc-info .doc-desc { font-size:12px; color:var(--muted); }
+.arrow { margin-left:auto; color:var(--accent); font-size:18px; }
+.foot { margin-top:32px; font-size:11px; color:var(--muted); text-align:center; }
+</style>
+</head>
+<body>
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:#0B0F1A;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-family:sans-serif;">
+  <div style="font-family:serif;font-size:28px;font-weight:700;color:#C8A96E;">🔒 Приватний доступ</div>
+  <input id="pw-input" type="password" placeholder="Введіть пароль" style="background:#111827;border:1px solid #C8A96E;border-radius:8px;padding:12px 20px;color:#DDE3F0;font-size:16px;outline:none;width:280px;text-align:center;" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()" style="background:#C8A96E;color:#0B0F1A;border:none;border-radius:8px;padding:10px 28px;font-size:15px;font-weight:600;cursor:pointer;">Відкрити</button>
+  <div id="pw-err" style="color:#E06060;font-size:13px;display:none;">Невірний пароль</div>
+</div>
+<script>
+(function(){
+  if(sessionStorage.getItem('auth')==='ok'){document.getElementById('pw-gate').style.display='none';}
+  window.checkPw=function(){
+    if(document.getElementById('pw-input').value==='Kuba2026'){
+      sessionStorage.setItem('auth','ok');
+      document.getElementById('pw-gate').style.display='none';
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  }
+})();
+</script>
+<div class="wrap">
+  <div class="label">Особисті документи</div>
+  <h1>Кубанська України 21<br><em>Продаж · 2026</em></h1>
+  <p class="sub">Приватні фінансові документи по операції продажу квартири</p>
+
+  <a href="plan.html" class="doc-link">
+    <span class="doc-icon">📋</span>
+    <div class="doc-info">
+      <div class="doc-title">План продажу</div>
+      <div class="doc-desc">6 фаз · ціновий план · дедлайни · фото і юридика</div>
+    </div>
+    <span class="arrow">→</span>
+  </a>
+
+  <a href="finances.html" class="doc-link">
+    <span class="doc-icon">💰</span>
+    <div class="doc-info">
+      <div class="doc-title">Витрати і фінанси</div>
+      <div class="doc-desc">Аналіз оренди · сценарії A і B · gap до Львова</div>
+    </div>
+    <span class="arrow">→</span>
+  </a>
+
+  <p class="foot">Приватний документ · Кубанська України 21 · 2026</p>
+</div>
+</body>
+</html>
